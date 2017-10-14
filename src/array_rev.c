@@ -21,10 +21,7 @@ void reverse_array(int* input_array, int size)
 
 int main(void)
 {
-
   int arr[10] = {1,2,3,4,5,6,7,8,9,10}; // statically allocated array
-
   reverse_array(arr, 10);
-
   return 0;
 }
