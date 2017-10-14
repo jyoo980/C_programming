@@ -29,13 +29,10 @@ int is_palindrome(char* word)
 
   while (end > start)
   {
-    if (reversed[start] != reversed[end]) {
-      return 0;
-    } else {
-      return 1;
-    }
+    if (reversed[start] != reversed[end]) 
+      return 0
   }
-  return 0;
+  return 1;
   free(reversed);
 }
 
