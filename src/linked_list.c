@@ -135,3 +135,27 @@ node* search(int data, node* head)
 
   return NULL;  
 }
+
+/**
+ * 
+ * @param head: the pointer to the front of the linked-list
+ * 
+ * @return head/NULL: the pointer to the new front of the list
+ *
+ */
+node* remove_front(node* head)
+{
+  if (head == NULL) return NULL;
+  
+  node* front = head;
+  head = head->next;
+  front->next = NULL;
+
+  // Check for the possibility of a one-element list  
+  if (front == head) {
+    head = NULL;
+  } 
+  free(front);
+
+  return head;
+}
