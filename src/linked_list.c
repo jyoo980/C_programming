@@ -75,4 +75,37 @@ node* append(int data, node* head)
   return head;
 }
 
+/**
+ *
+ * @param data: the data of the new node to insert
+ *        target: the data of the node we want to insert after
+ *        head: pointer to start of linked-list
+ * 
+ * @return: head of the linked-list
+ */
+node* insert_after(int data, int target, node* head)
+{
+  if (head == NULL) return NULL;
 
+  node* curr = head;
+
+  while (curr->next != NULL && curr->data != target)
+  {
+    curr = curr->next;
+  }
+
+  if (curr->data == target) {
+    if (curr->next != NULL) {
+      node* new_node = create(data, curr->next);
+      curr->next = new_node;
+      return head;
+    } else {
+      node* new_node = create(data, NULL);
+      curr->next = new_node;
+      return head;
+    }
+
+  } else {
+    return head;
+  }
+}
