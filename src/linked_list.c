@@ -159,3 +159,35 @@ node* remove_front(node* head)
 
   return head;
 }
+
+/**
+ *
+ * @param head: the pointer to the front of the linked-list
+ *
+ * @return head/NULL: pointer to the front of the list after 
+ *                    deletion, or NULL if single-element list *
+ */
+node* remove_back(node* head)
+{
+  if (head == NULL) return NULL;
+
+  prev = NULL;
+  curr = head;
+  while (curr->next != NULL) 
+  {
+    prev = curr;
+    curr = curr->next;
+  }
+  
+  if (prev != NULL) {
+    prev->next = NULL;
+  }
+
+  if (curr == head) {
+    head = NULL;
+  }
+
+  free(curr);
+
+  return head;
+}

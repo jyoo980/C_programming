@@ -14,3 +14,4 @@ node* append(int data, node* head);
 node* insert_after(int data, int target, node* head);
 node* search(int data, node* head);
 node* remove_front(node* head);
+node* remove_back(node* head);
