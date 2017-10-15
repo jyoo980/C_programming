@@ -109,3 +109,29 @@ node* insert_after(int data, int target, node* head)
     return head;
   }
 }
+
+/**
+ *
+ * @param data: the data of the node we're searching for 
+ *        head: pointer to the head of the linked-list we're 
+ *              searching in 
+ *
+ * @return curr/NULL: curr is the pointer to the node we find
+ *         NULL if either we fail to find the node, or if the 
+ *         list passed in is NULL*
+ */
+node* search(int data, node* head)
+{
+  if (head == NULL) return NULL;
+  
+  node* curr = head;
+  while (curr != NULL)
+  {
+    if (curr->data == data) {
+      return curr;
+    } 
+    curr = curr->next;
+  }
+
+  return NULL;  
+}
