@@ -9,3 +9,6 @@ typedef struct node {
 } node;
 
 node* create(int data, node* next);
+int length(node* head);
+node* append(int data, node* head);
+node* insert_after(int data, int target, node* head);
