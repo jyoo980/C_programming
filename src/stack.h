@@ -11,4 +11,7 @@ typedef struct stack {
 
 stack* create(stack* s, int max_capacity);
 int is_full(stack* s);
-stack* push(int item, stack* s);
+int is_empty(stack* s);
+void push(int item, stack* s);
+int pop(stack* s);
+void print_stack(stack* s);

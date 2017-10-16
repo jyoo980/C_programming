@@ -25,7 +25,6 @@ stack* create(stack* s, int max_capacity)
 
   s->items = items;
   s->top = -1;
-  s->curr_capacit = 0;
   s->max_capacity = max_capacity;
   
   return s;      
@@ -40,5 +39,52 @@ stack* create(stack* s, int max_capacity)
  */
 int is_full(stack* s)
 {
- return s->top >= s->max_capacity;  
+  return s->top >= s->max_capacity;  
+}
+
+/**
+ *
+ * @param s: the stack that we are checking if empty
+ *
+ * @return whether the stack is empty or not 
+ *
+ */
+int is_empty(stack* s)
+{
+  return s->top == -1;
+}
+
+/**
+ * 
+ * @param item: the item we want to push onto the stack
+ *	     s: the stack we're pushing the item on to 
+ */
+void push(int item, stack* s)
+{
+  if (is_full(s)) {
+    printf("Error, stack is full, cannot push any more items on.\n");
+    exit(-1);
+  }
+
+  s->top++;
+  s->items[s->top] item;
+}
+
+int pop(stack* s)
+{
+  if (is_empty(s)) {
+    printf("Error, stack is empty, cannot pop any more items off.\n");
+    exit(-1);
+  } 
+
+  int popped = s->items[s->top];
+  s->top--;
+  return popped;
+}
+
+void print_stack(stack* s)
+{
+  int cursor = 0;
+  while (
+
 }
