@@ -11,43 +11,27 @@
  * @param max_capacity: the maximum number of items held in the
  * 		 	the stack
  *
- * @return new_stack: the newly created stack
+ * @return new_stack: the newly created stack, top = -1 (denoting empty stack)
  *
  */
-stack* create(int max_capacity)
+stack* create(stack* s, int max_capacity)
 {
-  stack* new_stack = (stack*) malloc(sizeof(stack));
-  if (new_stack == NULL) {
-    printf("Creation of a stack was unsuccessful.\n");
-    exit(-1);
-  } else {
-    new_stack->items = (int*) malloc(sizeof(int) * max_capacity);     
-    new_stack->curr_capacity = 0;   
-    new_stack->max_capacity = max_capacity;
+  int* items = (int*) malloc(sizeof(int) * max_capacity);
+
+  if (items == NULL) {
+    printf("Error in allocating memory for stack.\n");
+    exit(-1);  
   }
 
-  return new_stack;
+  s->items = items;
+  s->top = -1;
+  s->curr_capacit = 0;
+  s->max_capacity = max_capacity;
+  
+  return s;      
 }
 
-/**
- *
- *
- *
- */
-stack* push(int item, stack* stack)
+int is_full(stack* s)
 {
-  if (stack->curr_capacity == 0) {
-    stack->items[0] = item;
-    stack->top = item;
-    stack->curr_capacity++;
-  } else if (stack->curr_capacity < stack->max_capacity) {
-    int* items = stack->items;
-    items[stack->curr_capacity] = item;
-    stack->curr_capacity++;  
-  }
-  return stack;
-}
-int main()
-{
-  return 0;
+ return s->top >= s->max_capacity;  
 }
