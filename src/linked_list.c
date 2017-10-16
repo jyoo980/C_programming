@@ -191,3 +191,23 @@ node* remove_back(node* head)
 
   return head;
 }
+
+/**
+ *
+ * @param head: pointer to the start of the linked-list we 
+ *     	 	want to delete completely.
+ */
+void dispose(node* head)
+{
+  if (head != NULL) 
+  {
+    node* curr, temp;
+    curr = head;
+    while (curr != NULL)
+    {
+      temp = curr;
+      curr = curr->next;
+      free(temp);
+    }
+  }
+}
