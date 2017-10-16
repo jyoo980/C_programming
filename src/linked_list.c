@@ -1,4 +1,4 @@
-#include<linked_list.h>
+#include"linked_list.h"
 /**
  *
  *  This file contains the implementation for the functions whose 
@@ -97,7 +97,9 @@ node* insert_after(int data, int target, node* head)
   if (curr->data == target) {
     if (curr->next != NULL) {
       node* new_node = create(data, curr->next);
+      node* temp = curr->next;
       curr->next = new_node;
+      new_node->next = temp;
       return head;
     } else {
       node* new_node = create(data, NULL);
@@ -171,8 +173,8 @@ node* remove_back(node* head)
 {
   if (head == NULL) return NULL;
 
-  prev = NULL;
-  curr = head;
+  node* prev = NULL;
+  node* curr = head;
   while (curr->next != NULL) 
   {
     prev = curr;
@@ -201,7 +203,8 @@ void dispose(node* head)
 {
   if (head != NULL) 
   {
-    node* curr, temp;
+    node* curr;
+    node* temp;
     curr = head;
     while (curr != NULL)
     {
@@ -210,4 +213,73 @@ void dispose(node* head)
       free(temp);
     }
   }
+}
+
+/**
+ *
+ * @param data: the node we want to insert at the head
+ *        head: the front of the current linked-list
+ *
+ * @return: the new head of the linked-list
+ */
+node* prepend(int data, node* head) 
+{
+  if (head == NULL) {
+    node* new_node = create(data, NULL);
+    head = new_node;
+    return head;
+  } else {
+    node* new_node = create(data, NULL);
+    new_node->next = head;
+    head = new_node;
+    return head;
+  }
+}
+
+/**
+ *
+ * @param n: the node whose data we want to print
+ *
+ */
+void display_node(node* n)
+{
+  if (n == NULL) {
+    printf("Node data cannot be printed, NULL node");
+  } else {
+    printf("%d ", n->data);
+  }
+}
+
+
+void display_list(node* head) 
+{
+  if (head == NULL) {
+    printf("The list cannot be printed, NULL head");
+  }
+
+  node* curr = head;
+  while (curr != NULL) 
+  {
+    if (curr->next != NULL) {
+      printf("%d->", curr->data);
+    } else {
+      printf("%d->NULL\n", curr->data);
+    }
+    curr = curr->next;
+  }
+}
+
+int main() 
+{
+  node* head = create(1, NULL);
+  head = append(2, head);
+  head = append(3, head);
+  display_list(head);
+  printf("Current length is: %d\n", length(head));
+  head = prepend(0, head);
+  display_list(head);
+  head = remove_back(head);
+  head = remove_front(head);
+  printf("Current length is: %d\n", length(head));
+  display_list(head);;
 }

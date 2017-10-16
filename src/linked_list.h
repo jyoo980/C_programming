@@ -16,3 +16,6 @@ node* search(int data, node* head);
 node* remove_front(node* head);
 node* remove_back(node* head);
 void dispose(node* head);
+node* prepend(int data, node* head);
+void display_node(node* n);
+void display_list(node* head);
