@@ -31,6 +31,13 @@ stack* create(stack* s, int max_capacity)
   return s;      
 }
 
+/**
+ *
+ * @param s: the stack we want to check for full
+ *
+ * @return: whether the stack is at capacity or not 
+ *
+ */
 int is_full(stack* s)
 {
  return s->top >= s->max_capacity;  
