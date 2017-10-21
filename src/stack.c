@@ -38,9 +38,34 @@ int is_full(stack* s)
   return s->top == s->max_capacity;
 }
 
+/**
+ * 
+ * @param s: the stack we want to check if empty
+ *
+ * @return: true if the stack is empty, else  false
+ *
+ */
+int is_empty(stack* s)
+{
+  return s->top == -1;
+}
+
+void push(int item, stack* s)
+{
+  if (!is_full(s)) {
+    s->items[s->top++] = item;
+  } else {
+    printf("Stack full, cannot push any more elements on.\n");
+  }
+
+}
 
 int main(void)
 {
   stack* s = create(12);
   printf("%d\n", is_full(s));
+  printf("%d\n", is_empty(s));
+  push(3, s);
+  printf("%d\n", is_full(s));
+  printf("%d\n", is_empty(s));
 }
