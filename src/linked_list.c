@@ -130,6 +130,35 @@ node* search(int data, node* head)
 }
 
 /**
+ *
+ * @param target: the node we want to remove   
+ *   	  head: the head pointer to the linked-list we want to modify
+ *
+ */
+void remove_node(int target, node* head)
+{
+  if (head == NULL) return;
+
+  node* prev = NULL;
+  node* curr = head;
+  while (curr != NULL)
+  {
+    if (curr->data == target) {
+      if (prev == NULL) {
+        free(head);  
+        head = NULL;
+      } else {
+        prev->next = curr->next;
+        free(curr);
+        curr = NULL; 
+      }
+    }
+    prev = curr;
+    curr = curr->next;
+  }
+}
+
+/**
  * 
  * @param head: the pointer to the front of the linked-list
  * 
@@ -294,6 +323,7 @@ int main()
   head = insert_after(99, 0, head);
   display_list(head);
   display_list(head);
+  remove_node(99, head);
   head = remove_back(head);
   head = remove_front(head);
   display_list(head);
