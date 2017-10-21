@@ -35,7 +35,7 @@ stack* create(int max_capacity)
  */
 int is_full(stack* s)
 {
-  return s->top == s->max_capacity;
+  return s->top + 1 == s->max_capacity;
 }
 
 /**
@@ -85,6 +85,11 @@ int pop(stack* s)
 
 }
 
+/**
+ * 
+ * @param s:the stack we want to print
+ *
+ */
 void print_stack(stack* s)
 {
  if (!is_empty(s)) {
