@@ -19,3 +19,4 @@ void dispose(node* head);
 node* prepend(int data, node* head);
 void display_node(node* n);
 void display_list(node* head);
+int contained_sum(node* head);

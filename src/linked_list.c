@@ -85,31 +85,22 @@ node* append(int data, node* head)
  */
 node* insert_after(int data, int target, node* head)
 {
-  if (head == NULL) return NULL;
-
   node* curr = head;
-
-  while (curr->next != NULL && curr->data != target)
+  
+  while (curr->next != NULL)
   {
-    curr = curr->next;
-  }
-
-  if (curr->data == target) {
-    if (curr->next != NULL) {
-      node* new_node = create(data, curr->next);
-      node* temp = curr->next;
-      curr->next = new_node;
-      new_node->next = temp;
-      return head;
-    } else {
-      node* new_node = create(data, NULL);
+    if (curr->data == target)
+    {
+      node* new_node = malloc(sizeof(node));
+      new_node->data = data;
+      new_node->next = curr->next;
       curr->next = new_node;
       return head;
     }
-
-  } else {
-    return head;
+    curr = curr->next;
   }
+
+  return head;
 }
 
 /**
@@ -244,7 +235,7 @@ node* prepend(int data, node* head)
 void display_node(node* n)
 {
   if (n == NULL) {
-    printf("Node data cannot be printed, NULL node");
+    printf("Node data cannot be printed, NULL node\n");
   } else {
     printf("%d ", n->data);
   }
@@ -254,7 +245,7 @@ void display_node(node* n)
 void display_list(node* head) 
 {
   if (head == NULL) {
-    printf("The list cannot be printed, NULL head");
+    printf("The list cannot be printed, NULL head\n");
   }
 
   node* curr = head;
@@ -269,17 +260,43 @@ void display_list(node* head)
   }
 }
 
+/**
+ *
+ * @param head: pointer to the front of the linked-list
+ * 
+ * @return sum: total sum of all elements in the linked-list
+ *
+ */
+int contained_sum(node* head)
+{
+  if (head == NULL) return 0;
+
+  node* curr = head;
+  int sum = 0;
+  while (curr != NULL)
+  {
+    sum += curr->data;
+    curr = curr->next;
+  }
+
+  return sum;
+}
+
 int main() 
 {
   node* head = create(1, NULL);
   head = append(2, head);
   head = append(3, head);
   display_list(head);
+  printf("Current sum is: %d\n", contained_sum(head));
   printf("Current length is: %d\n", length(head));
   head = prepend(0, head);
+  head = insert_after(99, 0, head);
+  display_list(head);
   display_list(head);
   head = remove_back(head);
   head = remove_front(head);
+  display_list(head);
   printf("Current length is: %d\n", length(head));
-  display_list(head);;
-}
+  printf("Current sum is: %d\n", contained_sum(head));
+} 
