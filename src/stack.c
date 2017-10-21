@@ -50,12 +50,34 @@ int is_empty(stack* s)
   return s->top == -1;
 }
 
+/**
+ * 
+ * @param item, stack: item is the item we want to push onto the stack, s
+ *
+ */
 void push(int item, stack* s)
 {
   if (!is_full(s)) {
     s->items[s->top++] = item;
   } else {
     printf("Stack full, cannot push any more elements on.\n");
+  }
+
+}
+
+/** 
+ * 
+ * @param s: the stack we want to pop an item off of
+ * 
+ * @return: the popped item, return -1 if there are no more elements 
+ */
+int pop(stack* s) 
+{
+  if (!is_empty(s)) {
+    return s->items[s->top--];
+  } else {
+    printf("Stack empty, cannot pop any elements off.\n");
+    return -1;
   }
 
 }
@@ -67,5 +89,7 @@ int main(void)
   printf("%d\n", is_empty(s));
   push(3, s);
   printf("%d\n", is_full(s));
+  printf("%d\n", is_empty(s));
+  pop(s);
   printf("%d\n", is_empty(s));
 }
