@@ -96,8 +96,21 @@ void print_stack(stack* s)
   for (int i = 0; i < s->top + 1; i++) {
     printf("%d\n", s->items[i]);
   }
+ } else {
+    printf("Stack is empty.\n");
  }
+}
 
+/**
+ *
+ * @param s: the stack whose contents we want to clear
+ *
+ */
+void clear_stack(stack* s)
+{
+  s->top = -1;
+  free(s->items);
+  s->items = malloc(sizeof(int) * s->max_capacity);
 }
 
 int main(void)
@@ -107,6 +120,14 @@ int main(void)
   printf("%d\n", is_empty(s));
   printf("Pushing elements onto the stack:\n");
   for (int i = 0; i < 13; i++) {
+    push(i, s);
+  }
+  print_stack(s);
+  printf("Clearing stack...\n");
+  clear_stack(s);  
+  print_stack(s);
+  for (int i = 0; i < 10; i++)
+  {
     push(i, s);
   }
   print_stack(s);
