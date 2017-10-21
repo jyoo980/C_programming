@@ -9,7 +9,7 @@ typedef struct stack {
   int max_capacity;
 } stack;
 
-stack* create(stack* s, int max_capacity);
+stack* create(int max_capacity);
 int is_full(stack* s);
 int is_empty(stack* s);
 void push(int item, stack* s);
