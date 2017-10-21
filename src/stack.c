@@ -58,7 +58,8 @@ int is_empty(stack* s)
 void push(int item, stack* s)
 {
   if (!is_full(s)) {
-    s->items[s->top++] = item;
+    s->items[++s->top] = item;
+    s->top = s->top++;
   } else {
     printf("Stack full, cannot push any more elements on.\n");
   }
@@ -74,11 +75,23 @@ void push(int item, stack* s)
 int pop(stack* s) 
 {
   if (!is_empty(s)) {
-    return s->items[s->top--];
+    int tmp_index = s->top--;
+    s->top = s->top--;
+    return s->items[tmp_index];
   } else {
     printf("Stack empty, cannot pop any elements off.\n");
     return -1;
   }
+
+}
+
+void print_stack(stack* s)
+{
+ if (!is_empty(s)) {
+  for (int i = 0; i < s->top + 1; i++) {
+    printf("%d\n", s->items[i]);
+  }
+ }
 
 }
 
@@ -87,9 +100,9 @@ int main(void)
   stack* s = create(12);
   printf("%d\n", is_full(s));
   printf("%d\n", is_empty(s));
-  push(3, s);
-  printf("%d\n", is_full(s));
-  printf("%d\n", is_empty(s));
-  pop(s);
-  printf("%d\n", is_empty(s));
+  printf("Pushing elements onto the stack:\n");
+  for (int i = 0; i < 13; i++) {
+    push(i, s);
+  }
+  print_stack(s);
 }
