@@ -42,7 +42,7 @@ int is_full(queue* q)
 
 /**
  *
- * @param q: te queue taht we want to check for "emptiness"
+ * @param q: the queue that we want to check for "emptiness"
  *
  * @return: true if the stack is empty, else false 
  *
