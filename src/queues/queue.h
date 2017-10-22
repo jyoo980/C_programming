@@ -7,4 +7,4 @@ typedef struct queue {
   int max_capacity;
 } queue;
 
-queue* create(int* num_items);
+queue* create(int capacity);
